@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Programa de Restauración Bio-Integral de 30 Días</title>
+<meta name="description" content="Evaluación con Bio-Escáner, plan personalizado de 4 pilares y monitoreo semanal por WhatsApp. Programa de 30 días por $1,250 MXN.">
+<meta name="theme-color" content="#0A2540">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --white: #FFFFFF;
+    --atomy: #0081C9;
+    --deep: #0A2540;
+    --neon: #00D2FF;
+    --ice: #EAF6FD;
+    --ice-line: #CFE8F7;
+    --ink: #1B3550;
+    --muted: #4F6A83;
+    --wa: #25D366;
+    --wa-hover: #3BE77B;
+
+    --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+    --font-tech: 'Rajdhani', 'Roboto', sans-serif;
+    --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 129, 201, .14);
+    --shadow-strong: 0 18px 44px rgba(10, 37, 64, .22);
+    --wrap: 1120px;
+  }
+
+  /* ============ BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  h1, h2, h3 { margin: 0; color: var(--deep); }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+  section { padding-block: 56px; }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 5vw, 2.1rem);
+    line-height: 1.25;
+    letter-spacing: .01em;
+    text-wrap: balance;
+  }
+  .section-lead {
+    margin-top: 14px;
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  :focus-visible { outline: 3px solid var(--neon); outline-offset: 3px; border-radius: 6px; }
+
+  /* ============ BOTONES CTA ============ */
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 26px;
+    min-height: 60px;
+    font-family: var(--font-tech);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .02em;
+    text-align: center;
+    text-decoration: none;
+    color: var(--deep);
+    background: var(--wa);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(37, 211, 102, .38);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .cta svg { width: 26px; height: 26px; flex: none; }
+  .cta:hover {
+    background: var(--wa-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 4px rgba(0, 210, 255, .28), 0 14px 30px rgba(37, 211, 102, .5);
+  }
+  .cta:active { transform: translateY(0); }
+
+  @media (min-width: 640px) {
+    .cta { width: auto; }
+  }
+
+  /* ============ 0. BANNER ============ */
+  .banner { background: var(--ice); line-height: 0; }
+  .banner img { width: 100%; max-width: 100%; height: auto; margin-inline: auto; }
+
+  /* ============ 1. HERO ============ */
+  .hero {
+    padding-block: 44px 60px;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(0, 210, 255, .18), transparent 60%),
+      linear-gradient(180deg, var(--white) 0%, var(--ice) 100%);
+    overflow: hidden;
+  }
+  .hero-grid { display: grid; gap: 36px; align-items: center; }
+
+  .hero-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    font-family: var(--font-tech);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--atomy);
+    background: var(--white);
+    border: 1px solid var(--ice-line);
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 129, 201, .08);
+  }
+  .hero h1 {
+    margin-top: 18px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.7rem, 7.2vw, 3.1rem);
+    line-height: 1.15;
+    letter-spacing: .005em;
+    text-wrap: balance;
+  }
+  .hero h1 .glow {
+    background: linear-gradient(90deg, var(--atomy), var(--neon));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-sub {
+    margin-top: 18px;
+    font-family: var(--font-tech);
+    font-weight: 600;
+    font-size: clamp(1.15rem, 3.6vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--atomy);
+  }
+  .hero-copy {
+    margin-top: 12px;
+    max-width: 56ch;
+    color: var(--muted);
+  }
+  .hero .cta { margin-top: 26px; }
+
+  .hero-facts {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero-facts li {
+    padding: 8px 14px;
+    font-family: var(--font-tech);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--deep);
+    background: var(--white);
+    border: 1px solid var(--ice-line);
+    border-radius: 10px;
+  }
+
+  /* Panel Bio-Escáner (elemento memorable) */
+  .scanner {
+    position: relative;
+    padding: 22px;
+    color: var(--white);
+    background: linear-gradient(160deg, var(--deep) 0%, #0D3357 100%);
+    border: 1px solid rgba(0, 210, 255, .45);
+    border-radius: 20px;
+    box-shadow: var(--shadow-strong), 0 0 40px rgba(0, 210, 255, .18);
+    overflow: hidden;
+  }
+  .scanner::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 210, 255, .09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 210, 255, .09) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+  .scanner::after {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 90px;
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0), rgba(0, 210, 255, .28) 85%, rgba(0, 210, 255, .9) 100%);
+    border-bottom: 2px solid var(--neon);
+    animation: sweep 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes sweep {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(420px); }
+  }
+  .scanner-head {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    font-family: var(--font-display);
+    font-size: .85rem;
+    color: var(--neon);
+  }
+  .scanner-head span:last-child {
+    font-family: var(--font-tech);
+    font-size: .95rem;
+    color: rgba(255, 255, 255, .75);
+  }
+  .scan-rows { position: relative; z-index: 1; margin-top: 22px; display: grid; gap: 20px; }
+  .scan-row-label {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-tech);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+  .scan-row-label small { font-family: var(--font-tech); font-size: .95rem; color: var(--neon); }
+  .bar {
+    position: relative;
+    height: 10px;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bar i {
+    position: absolute; inset: 0 auto 0 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--atomy), var(--neon));
+    box-shadow: 0 0 12px var(--neon);
+  }
+  .bar.b1 i { width: 38%; }
+  .bar.b2 i { width: 52%; }
+  .bar.b3 i { width: 46%; }
+  .scanner-foot {
+    position: relative; z-index: 1;
+    margin-top: 22px;
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .6);
+  }
+
+  @media (min-width: 900px) {
+    .hero { padding-block: 72px 84px; }
+    .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 56px; }
+  }
+
+  /* ============ 2. PROBLEMA / SOLUCIÓN ============ */
+  .problem { background: var(--white); }
+  .symptoms {
+    margin-top: 28px;
+    display: grid;
+    gap: 12px;
+  }
+  .symptoms li {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px;
+    font-weight: 500;
+    color: var(--deep);
+    background: var(--ice);
+    border-left: 4px solid var(--atomy);
+    border-radius: 12px;
+  }
+  .symptoms svg { width: 24px; height: 24px; flex: none; color: var(--atomy); }
+
+  .compare { margin-top: 36px; display: grid; gap: 18px; }
+  .compare-card {
+    padding: 26px 24px;
+    border-radius: var(--radius);
+  }
+  .compare-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+  .compare-card p { margin-top: 12px; }
+  .compare-card.a {
+    background: var(--white);
+    border: 1px dashed #9FC4DE;
+    color: var(--muted);
+  }
+  .compare-card.a h3 { color: var(--muted); }
+  .compare-card.b {
+    background: linear-gradient(160deg, var(--deep), #0D3357);
+    color: rgba(255, 255, 255, .88);
+    box-shadow: var(--shadow-strong);
+    border: 1px solid rgba(0, 210, 255, .4);
+  }
+  .compare-card.b h3 { color: var(--neon); }
+
+  @media (min-width: 640px) {
+    .symptoms { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 820px) {
+    .compare { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+
+  /* ============ 3. TARJETAS DEL PROGRAMA ============ */
+  .program { background: var(--ice); }
+  .cards { margin-top: 34px; display: grid; gap: 18px; }
+  .card {
+    position: relative;
+    padding: 26px 24px 26px;
+    background: var(--white);
+    border: 1px solid var(--ice-line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .card::before {
+    content: "";
+    position: absolute; left: 24px; right: 24px; top: -1px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--atomy), var(--neon));
+    border-radius: 0 0 4px 4px;
+  }
+  .card-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--atomy), var(--neon));
+    border-radius: 12px;
+  }
+  .card h3 {
+    margin-top: 16px;
+    font-family: var(--font-tech);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  .card p { margin-top: 10px; color: var(--muted); }
+  .card ul { margin-top: 14px; display: grid; gap: 10px; }
+  .card li {
+    position: relative;
+    padding-left: 26px;
+    font-size: .97rem;
+  }
+  .card li::before {
+    content: "";
+    position: absolute; left: 0; top: .5em;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 0 3px rgba(0, 129, 201, .18);
+  }
+  .card li strong { color: var(--deep); font-weight: 700; }
+
+  .price-tag {
+    margin-top: 30px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px;
+    padding: 18px 22px;
+    color: var(--white);
+    background: var(--deep);
+    border-radius: var(--radius);
+  }
+  .price-tag span { font-family: var(--font-tech); font-weight: 600; font-size: 1.15rem; }
+  .price-tag strong { font-family: var(--font-display); font-size: 1.5rem; color: var(--neon); }
+
+  @media (min-width: 640px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .cards { grid-template-columns: repeat(6, 1fr); gap: 22px; }
+    .card { grid-column: span 2; }
+    .card:nth-child(4), .card:nth-child(5) { grid-column: span 3; }
+  }
+
+  /* ============ 4. BENEFICIOS ============ */
+  .benefits { background: var(--white); }
+  .benefit-grid { margin-top: 32px; display: grid; gap: 16px; }
+  .benefit {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 20px;
+    border: 1px solid var(--ice-line);
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+  .badge {
+    flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px;
+    color: var(--atomy);
+    background: var(--ice);
+    border: 1px solid var(--ice-line);
+    border-radius: 14px;
+  }
+  .badge svg { width: 28px; height: 28px; }
+  .benefit h3 {
+    font-family: var(--font-tech);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  .benefit p { margin-top: 4px; color: var(--muted); font-size: .97rem; }
+
+  @media (min-width: 700px) {
+    .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .benefit-grid { grid-template-columns: repeat(4, 1fr); }
+    .benefit { flex-direction: column; }
+  }
+
+  /* ============ 5. OFERTA FINAL ============ */
+  .offer {
+    background:
+      radial-gradient(700px 360px at 50% 0%, rgba(0, 210, 255, .22), transparent 65%),
+      var(--deep);
+    color: var(--white);
+    text-align: center;
+  }
+  .offer .section-title { color: var(--white); margin-inline: auto; max-width: 24ch; }
+  .offer-box {
+    margin: 32px auto 0;
+    max-width: 520px;
+    padding: 34px 24px;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(0, 210, 255, .5);
+    border-radius: 22px;
+    box-shadow: 0 0 44px rgba(0, 210, 255, .18);
+  }
+  .offer-name {
+    font-family: var(--font-tech);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, .85);
+  }
+  .price {
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 12vw, 4rem);
+    line-height: 1.1;
+    color: var(--neon);
+    text-shadow: 0 0 24px rgba(0, 210, 255, .5);
+  }
+  .price small { font-size: .38em; font-weight: 700; color: var(--white); text-shadow: none; }
+  .offer-list {
+    margin: 22px 0 26px;
+    display: grid; gap: 10px;
+    text-align: left;
+  }
+  .offer-list li {
+    position: relative;
+    padding-left: 30px;
+    color: rgba(255, 255, 255, .9);
+  }
+  .offer-list li::before {
+    content: "";
+    position: absolute; left: 4px; top: .35em;
+    width: 8px; height: 14px;
+    border: solid var(--neon);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+  .offer .cta { width: 100%; }
+  .offer-note { margin-top: 16px; font-size: .92rem; color: rgba(255, 255, 255, .65); }
+
+  /* ============ FOOTER ============ */
+  footer { padding: 28px 0 36px; background: #071B30; }
+  footer p {
+    max-width: 78ch;
+    margin-inline: auto;
+    padding-inline: 20px;
+    font-size: .82rem;
+    line-height: 1.6;
+    text-align: center;
+    color: rgba(255, 255, 255, .58);
+  }
+
+  /* ============ CTA FLOTANTE (MÓVIL) ============ */
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, .94);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--ice-line);
+    box-shadow: 0 -8px 24px rgba(10, 37, 64, .1);
+    transition: transform .3s ease;
+  }
+  .sticky-cta.hide { transform: translateY(110%); }
+  .sticky-cta .cta { min-height: 54px; padding: 12px 18px; font-size: 1.1rem; }
+  @media (min-width: 900px) {
+    .sticky-cta { display: none; }
+    body { padding-bottom: 0; }
+  }
+
+  /* ============ MOVIMIENTO REDUCIDO ============ */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .scanner::after { animation: none; transform: translateY(120px); }
+    .cta, .sticky-cta { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============ 0. BANNER PROMOCIONAL ============ -->
+<header class="banner">
+  <!-- Remplaza esta URL con tu enlace de ImgBB -->
+  <img src="https://i.ibb.co/tu-codigo-de-imagen/banner.jpg" alt="Programa de Restauración Bio-Integral de 30 Días" width="1200" height="400" style="max-width:100%;height:auto;">
+</header>
+
+<main>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-tag">Para dolores articulares, piernas pesadas y várices</span>
+      <h1>Vuelve a caminar <span class="glow">sin dolor y sin pesadez</span> en las piernas</h1>
+      <p class="hero-sub">Programa de Restauración Bio-Integral de 30 Días</p>
+      <p class="hero-copy">Evaluación con Bio-Escáner, plan personalizado de 4 pilares y monitoreo semanal por WhatsApp. Un método completo para acompañar a tu cuerpo desde adentro.</p>
+
+      <a class="cta" href="https://wa.me/522218620111?text=Hola,%20quiero%20reservar%20mi%201er%20evaluaci%C3%B3n%20para%20el%20Programa%20de%20Restauraci%C3%B3n%20Bio-Integral" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200Zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.300 5.300 0 0 0 1.100 2.800 12 12 0 0 0 4.600 4c1.700.7 2.300.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.5-.3Z"/></svg>
+        Reservar mi 1er Evaluación por WhatsApp
+      </a>
+
+      <ul class="hero-facts">
+        <li>Bio-Escáner Día 1 y Día 30</li>
+        <li>Plan de 4 pilares</li>
+        <li>Seguimiento por WhatsApp</li>
+      </ul>
+    </div>
+
+    <!-- Panel Bio-Escáner (decorativo) -->
+    <aside class="scanner" aria-hidden="true">
+      <div class="scanner-head">
+        <span>BIO-ESCÁNER</span>
+        <span>Día 1 vs Día 30</span>
+      </div>
+      <div class="scan-rows">
+        <div>
+          <div class="scan-row-label"><span>Circulación</span><small>en análisis</small></div>
+          <div class="bar b1"><i></i></div>
+        </div>
+        <div>
+          <div class="scan-row-label"><span>Inflamación</span><small>en análisis</small></div>
+          <div class="bar b2"><i></i></div>
+        </div>
+        <div>
+          <div class="scan-row-label"><span>Movilidad articular</span><small>en análisis</small></div>
+          <div class="bar b3"><i></i></div>
+        </div>
+      </div>
+      <p class="scanner-foot">Imagen ilustrativa. Tus resultados se comparan en tu evaluación inicial y en tu evaluación de progreso.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 2. PROBLEMA Y SOLUCIÓN ============ -->
+<section class="problem" id="problema">
+  <div class="wrap">
+    <h2 class="section-title">Tu cuerpo lleva tiempo avisándote</h2>
+    <p class="section-lead">Si reconoces alguno de estos síntomas, no son “cosas de la edad”. Son señales de que algo en tu sistema necesita atención.</p>
+
+    <ul class="symptoms">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4a2 2 0 1 0 0 .01M8 21l3-7-2-3 3-3 3 3 3 1M11 14l-3-2"/></svg>
+        Molestia y dolor al caminar
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg>
+        Inflamación en pies, tobillos o rodillas
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v12a4 4 0 0 0 8 0M6 21h12"/></svg>
+        Pesadez en las piernas al final del día
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+        Rigidez articular, sobre todo por la mañana
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M22 11v3M6 12v1"/></svg>
+        Fatiga y falta de energía
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4c4 2 0 5 4 7s0 5 4 7M15 4c4 2 0 5 4 7"/></svg>
+        Várices o venas marcadas
+      </li>
+    </ul>
+
+    <div class="compare">
+      <article class="compare-card a">
+        <h3>Un escaneo aislado solo te da una foto</h3>
+        <p>Ver un dato una sola vez te dice cómo estás hoy, pero no cambia nada. Sin un plan y sin seguimiento, el resultado se queda en un papel.</p>
+      </article>
+      <article class="compare-card b">
+        <h3>30 días para que el cambio ocurra</h3>
+        <p>Las células se renuevan y el metabolismo se reajusta con constancia. Por eso combinamos evaluación, hábitos, suplementación y acompañamiento semanal, y medimos tu progreso al final.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. TARJETAS DEL PROGRAMA ============ -->
+<section class="program" id="programa">
+  <div class="wrap">
+    <h2 class="section-title">Todo lo que incluye tu programa de 30 días</h2>
+    <p class="section-lead">Cinco componentes que trabajan juntos para acompañarte de principio a fin.</p>
+
+    <div class="cards">
+      <article class="card">
+        <span class="card-num">1</span>
+        <h3>Evaluaciones con Bio-Escáner</h3>
+        <p>Medimos tu punto de partida y comprobamos tu avance.</p>
+        <ul>
+          <li><strong>Día 1:</strong> evaluación inicial.</li>
+          <li><strong>Día 30:</strong> evaluación de progreso con comparativo.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="card-num">2</span>
+        <h3>Plan personalizado de 4 pilares</h3>
+        <ul>
+          <li><strong>Sueño reparador</strong> para que tu cuerpo se regenere.</li>
+          <li><strong>Hidratación celular</strong> con agua, sal marina del Himalaya y limón.</li>
+          <li><strong>Movimiento adaptado</strong> a tu condición y a tu ritmo.</li>
+          <li><strong>Menos azúcares</strong> y exceso de carbohidratos.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="card-num">3</span>
+        <h3>Suplementación biotecnológica</h3>
+        <p>Asesoría y asignación según tu evaluación.</p>
+        <ul>
+          <li>Omega 3</li>
+          <li>Color C</li>
+          <li>HemoHIM</li>
+          <li>Colágeno Atomy</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="card-num">4</span>
+        <h3>Monitoreo semanal por WhatsApp</h3>
+        <p>Seguimiento directo cada semana: resuelves dudas, ajustas tu plan y mantienes la constancia sin sentirte solo.</p>
+      </article>
+
+      <article class="card">
+        <span class="card-num">5</span>
+        <h3>Consulta y análisis de reportes digitales</h3>
+        <p>Revisamos contigo tus reportes en lenguaje claro, para que entiendas qué significa cada dato y qué hacer con él.</p>
+      </article>
+    </div>
+
+    <div class="price-tag">
+      <span>Programa completo de 30 días</span>
+      <strong>$1,250 MXN</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. BENEFICIOS CLAVE ============ -->
+<section class="benefits" id="beneficios">
+  <div class="wrap">
+    <h2 class="section-title">Lo que buscamos lograr contigo en 30 días</h2>
+    <p class="section-lead">Objetivos de bienestar proyectados. Cada persona avanza a su propio ritmo.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg>
+        </span>
+        <div>
+          <h3>Menos inflamación</h3>
+          <p>Apoya la reducción de la hinchazón en piernas y articulaciones.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>
+        </span>
+        <div>
+          <h3>Ligereza circulatoria</h3>
+          <p>Sensación de piernas más livianas al caminar y al terminar el día.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+        </span>
+        <div>
+          <h3>Energía renovada</h3>
+          <p>Mejor descanso, mejor hidratación y más vitalidad en tu rutina.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.500"/><circle cx="18" cy="18" r="2.500"/><path d="M8 7.500c6 0 2 9 8 9"/></svg>
+        </span>
+        <div>
+          <h3>Flexibilidad articular</h3>
+          <p>Movimientos más fluidos, con menos rigidez y más confianza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. OFERTA Y CTA FINAL ============ -->
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <h2 class="section-title">Empieza hoy tu restauración bio-integral</h2>
+
+    <div class="offer-box">
+      <p class="offer-name">Programa completo de 30 días</p>
+      <p class="price">$1,250 <small>MXN</small></p>
+
+      <ul class="offer-list">
+        <li>Bio-Escáner al inicio y al día 30</li>
+        <li>Plan personalizado de 4 pilares</li>
+        <li>Asesoría de suplementación Atomy</li>
+        <li>Monitoreo semanal por WhatsApp</li>
+        <li>Análisis de tus reportes digitales</li>
+      </ul>
+
+      <a class="cta" id="cta-final" href="https://wa.me/522218620111?text=Hola,%20quiero%20reservar%20mi%201er%20evaluaci%C3%B3n%20para%20el%20Programa%20de%20Restauraci%C3%B3n%20Bio-Integral" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200Zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.300 5.300 0 0 0 1.100 2.800 12 12 0 0 0 4.600 4c1.700.7 2.300.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.5-.3Z"/></svg>
+        Agendar mi 1er evaluación presencial
+      </a>
+      <p class="offer-note">Te respondemos directo por WhatsApp para confirmar tu cita.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Este programa es un acompañamiento de bienestar y hábitos de vida. No sustituye el diagnóstico, tratamiento ni la consulta con un profesional de la salud. Los resultados varían de una persona a otra. Si tienes una condición médica o tomas medicamentos, consulta a tu médico antes de iniciar cambios en tu alimentación, actividad o suplementación.</p>
+</footer>
+
+<!-- CTA flotante (solo móvil/tablet) -->
+<div class="sticky-cta" id="sticky-cta">
+  <a class="cta" href="https://wa.me/522218620111?text=Hola,%20quiero%20reservar%20mi%201er%20evaluaci%C3%B3n%20para%20el%20Programa%20de%20Restauraci%C3%B3n%20Bio-Integral" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200Zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.300 5.300 0 0 0 1.100 2.800 12 12 0 0 0 4.600 4c1.700.7 2.300.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.5-.3Z"/></svg>
+    Reservar mi evaluación
+  </a>
+</div>
+
+<script>
+  // Oculta el CTA flotante cuando la oferta final está a la vista
+  (function () {
+    var bar = document.getElementById('sticky-cta');
+    var offer = document.getElementById('oferta');
+    if (!bar || !offer || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle('hide', entries[0].isIntersecting);
+    }, { threshold: 0.25 }).observe(offer);
+  })();
+</script>
+
+</body>
+</html>
